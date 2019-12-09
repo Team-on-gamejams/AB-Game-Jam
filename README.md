@@ -1,4 +1,4 @@
-# AB Game Jam
+# [AB Game Jam](https://jam.ab-games.com/)
 Theme: "----" 
 GAME_NAME 
 GAME_DSCR
