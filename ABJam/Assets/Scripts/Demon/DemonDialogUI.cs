@@ -26,4 +26,12 @@ public class DemonDialogUI : MonoBehaviour {
 		image.sprite = demon.sprite;
 		dialogText.text = demon.dialogText;
 	}
+
+	public void CorrectGift() {
+
+	}
+
+	public void WrongGift() {
+
+	}
 }
