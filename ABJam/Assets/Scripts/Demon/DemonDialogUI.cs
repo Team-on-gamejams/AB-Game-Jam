@@ -18,9 +18,6 @@ public class DemonDialogUI : MonoBehaviour {
 	private void Awake() {
 		canvasGroup.interactable = canvasGroup.blocksRaycasts = false;
 		canvasGroup.alpha = 0.0f;
-
-		//DEBUG ONLY
-		ShowDialog();
 	}
 
 	public void ShowDialog() {

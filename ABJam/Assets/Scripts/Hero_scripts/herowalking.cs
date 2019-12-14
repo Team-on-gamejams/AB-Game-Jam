@@ -3,59 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class herowalking : MonoBehaviour
+public class herowalking : MonoBehaviour {
+	public float speed;
+	public Animator animator;
 
-{
-    private Rigidbody2D rb2D;
-    public float speed = 10f;
-    private Rigidbody2D rb2d;
-    public Animator animator;
-    // Start is called before the first frame update
-    void Start()
-    {
-        rb2d = GetComponent<Rigidbody2D>();
-    }
+	Rigidbody2D rb2d;
+	Vector3 movement;
 
-    //================================================
-    void Update()
-    {
-        
-        
-    }
+	void Awake() {
+		rb2d = GetComponent<Rigidbody2D>();
+	}
 
-    
-    void FixedUpdate()
-    {
-        
-        float moveHorizontal = Input.GetAxisRaw("Horizontal");
-        
-        animator.SetFloat("Right", moveHorizontal);
-        animator.SetFloat("Left", moveHorizontal);
+	void Update() {
+		movement = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+		movement = movement.normalized * speed;
+	}
 
-        if (
-            (moveHorizontal < 0 && transform.localScale.x > 0) ||
-            (moveHorizontal > 0 && transform.localScale.x < 0)
-            )
-        {
-            Vector3 rot = transform.localScale;
-            rot.x = -rot.x;
-            transform.localScale = rot;
-        }
+	void FixedUpdate() {
+		animator.SetFloat("Right", movement.x);
+		animator.SetFloat("Left", movement.x);
 
-        float moveVertical = Input.GetAxisRaw("Vertical");
-        animator.SetFloat("Forward", moveVertical);
-        animator.SetFloat("Backward", moveVertical);
+		if (
+			(movement.x < 0 && transform.localScale.x > 0) ||
+			(movement.x > 0 && transform.localScale.x < 0)
+			) {
+			Vector3 rot = transform.localScale;
+			rot.x = -rot.x;
+			transform.localScale = rot;
+		}
 
+		animator.SetFloat("Forward", movement.y);
+		animator.SetFloat("Backward", movement.y);
 
-
-
-
-        Vector2 movement = new Vector2(moveHorizontal, moveVertical);
-
-        
-        rb2d.AddForce(movement * speed);
-    }
-
-   
-
+		rb2d.MovePosition(transform.position + movement);
+	}
 }
