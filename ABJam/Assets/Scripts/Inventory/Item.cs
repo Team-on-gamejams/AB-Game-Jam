@@ -64,7 +64,7 @@ public class Item : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 	}
 
 	public void OnEndDrag(PointerEventData eventData) {
-		ActivateRaycast();
+		dragItem.ActivateRaycast();
 
 		if (!isDragCatch) {
 			inventory.AddItem(dragItem);
