@@ -4,19 +4,28 @@ using UnityEngine;
 
 
 public class herowalking : MonoBehaviour {
+	static public bool isCanMove;
+
 	public float speed;
 	public Animator animator;
+	public DemonDialogUI demonDialogUI;
 
 	Rigidbody2D rb2d;
 	Vector3 movement;
 
 	void Awake() {
 		rb2d = GetComponent<Rigidbody2D>();
+		isCanMove = true;
 	}
 
 	void Update() {
-		movement = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-		movement = movement.normalized * speed;
+		if (isCanMove) {
+			movement = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+			movement = movement.normalized * speed;
+		}
+		else {
+			movement = Vector3.zero;
+		}
 	}
 
 	void FixedUpdate() {
@@ -36,5 +45,15 @@ public class herowalking : MonoBehaviour {
 		animator.SetFloat("Backward", movement.y);
 
 		rb2d.MovePosition(transform.position + movement);
+	}
+
+	void OnTriggerEnter2D(Collider2D collision) {
+		if(collision.tag == "DeamonDialog") {
+			DemonDialog demonDialog = collision.GetComponent<DemonDialog>();
+			if (!demonDialog.isGifted) {
+				demonDialogUI.demon = demonDialog;
+				demonDialogUI.ShowDialog();
+			}
+		}	
 	}
 }

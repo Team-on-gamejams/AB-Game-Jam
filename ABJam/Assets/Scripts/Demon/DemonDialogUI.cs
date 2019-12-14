@@ -21,6 +21,7 @@ public class DemonDialogUI : MonoBehaviour {
 	}
 
 	public void ShowDialog() {
+		herowalking.isCanMove = false;
 		canvasGroup.interactable = canvasGroup.blocksRaycasts = true;
 		canvasGroup.alpha = 1.0f;
 
@@ -29,6 +30,7 @@ public class DemonDialogUI : MonoBehaviour {
 	}
 
 	public void CloseDialog() {
+		herowalking.isCanMove = true;
 		canvasGroup.interactable = canvasGroup.blocksRaycasts = false;
 		canvasGroup.alpha = 0.0f;
 	}
@@ -47,6 +49,7 @@ public class DemonDialogUI : MonoBehaviour {
 		Destroy(createdItem.gameObject);
 
 		dialogText.text = "Дяяяяяя.";
+		demon.isGifted = true;
 
 		LeanTween.delayedCall(1.0f, ()=> CloseDialog());
 	}

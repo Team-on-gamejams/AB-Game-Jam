@@ -4,10 +4,12 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class GiftHandler : MonoBehaviour, IDropHandler {
-
 	[SerializeField] DemonDialogUI demonDialog;
 
 	public void OnDrop(PointerEventData eventData) {
+		if (demonDialog?.demon?.isGifted ?? false)
+			return;
+
 		Item item = eventData.selectedObject.GetComponent<Item>();
 		if (item == null)
 			return;
