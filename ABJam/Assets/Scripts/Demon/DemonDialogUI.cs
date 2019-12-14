@@ -22,8 +22,12 @@ public class DemonDialogUI : MonoBehaviour {
 
 	public void ShowDialog() {
 		herowalking.isCanMove = false;
+
 		canvasGroup.interactable = canvasGroup.blocksRaycasts = true;
-		canvasGroup.alpha = 1.0f;
+		LeanTween.value(gameObject, canvasGroup.alpha, 1.0f, 0.2f)
+		.setOnUpdate((float a)=> { 
+			canvasGroup.alpha = a;
+		});
 
 		image.sprite = demon.sprite;
 		dialogText.text = demon.dialogText;
@@ -32,7 +36,10 @@ public class DemonDialogUI : MonoBehaviour {
 	public void CloseDialog() {
 		herowalking.isCanMove = true;
 		canvasGroup.interactable = canvasGroup.blocksRaycasts = false;
-		canvasGroup.alpha = 0.0f;
+		LeanTween.value(gameObject, canvasGroup.alpha, 0.0f, 0.2f)
+		.setOnUpdate((float a) => {
+			canvasGroup.alpha = a;
+		});
 	}
 
 	public void CorrectGift(Item item, ItemType reward) {

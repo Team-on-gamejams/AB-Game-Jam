@@ -13,13 +13,13 @@ public abstract class MenuBase : MonoBehaviour {
 		canvasGroup = GetComponent<CanvasGroup>();
 	}
 
-	public void Show() {
+	public virtual void Show() {
 		canvasGroup.interactable = canvasGroup.blocksRaycasts = true;
 		canvasGroup.alpha = 1.0f;
 		OnEnter();
 	}
 
-	public void Hide() {
+	public virtual void Hide() {
 		canvasGroup.interactable = canvasGroup.blocksRaycasts = false;
 		canvasGroup.alpha = 0.0f;
 		OnExit();

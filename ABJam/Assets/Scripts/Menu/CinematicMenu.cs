@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MenuMain : MenuBase {
+public class CinematicMenu : MenuBase {
 	public override void Show() {
 		canvasGroup.interactable = canvasGroup.blocksRaycasts = true;
 		LeanTween.value(gameObject, canvasGroup.alpha, 1.0f, 0.2f)
@@ -21,7 +21,7 @@ public class MenuMain : MenuBase {
 		OnExit();
 	}
 
-	public void ToSinematic() {
-		MenuManager.TransitTo(MenuManager.GetNeededMenu<CinematicMenu>());
+	public void ToGameMenu() {
+		MenuManager.TransitTo(MenuManager.GetNeededMenu<MenuGame>());
 	}
 }
