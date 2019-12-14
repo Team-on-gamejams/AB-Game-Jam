@@ -7,6 +7,10 @@ using TMPro;
 public class DemonDialogUI : MonoBehaviour {
 	public DemonDialog demon;
 
+	[SerializeField] CraftPanel craftPanel;
+	[SerializeField] Inventory inventory;
+	[SerializeField] PlayerHp hp;
+
 	[SerializeField] CanvasGroup canvasGroup;
 	[SerializeField] Image image;
 	[SerializeField] TextMeshProUGUI dialogText;
@@ -27,11 +31,31 @@ public class DemonDialogUI : MonoBehaviour {
 		dialogText.text = demon.dialogText;
 	}
 
-	public void CorrectGift() {
+	public void CloseDialog() {
+		canvasGroup.interactable = canvasGroup.blocksRaycasts = false;
+		canvasGroup.alpha = 0.0f;
+	}
 
+	public void CorrectGift(Item item, ItemType reward) {
+		if (craftPanel.items.Contains(item))
+			craftPanel.items.Remove(item);
+
+		if (inventory.items.Contains(item))
+			inventory.items.Remove(item);
+
+		Item createdItem = craftPanel.CreateItem(reward);
+		inventory.AddItem(createdItem);
+
+		Destroy(item.gameObject);
+		Destroy(createdItem.gameObject);
+
+		dialogText.text = "Дяяяяяя.";
+
+		LeanTween.delayedCall(1.0f, ()=> CloseDialog());
 	}
 
 	public void WrongGift() {
-
+		dialogText.text = "Ніт \n" + demon.dialogText;
+		--hp.CurrHp;
 	}
 }

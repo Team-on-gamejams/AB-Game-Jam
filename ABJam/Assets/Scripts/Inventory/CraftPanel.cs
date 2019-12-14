@@ -113,9 +113,9 @@ public class CraftPanel : MonoBehaviour, IDropHandler {
 	}
 
 	public Item CreateItem(ItemType itemType) {
-		GameObject itemgo = Item.CreateDragItem(items[0].transform.position);
+		GameObject itemgo = Item.CreateDragItem(items.Count != 0 ? items[0].transform.position : Vector3.zero);
 		Item item = itemgo.GetComponent<Item>();
-		Item.SetDragItem(item, items[0]);
+		Item.SetDragItem(item, items.Count != 0 ? items[0] : null);
 
 		item.type = itemType;
 
