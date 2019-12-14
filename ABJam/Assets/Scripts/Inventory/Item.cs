@@ -50,18 +50,11 @@ public class Item : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 			dragObject = gameObject;
 		}
 		else {
-			dragObject = Instantiate(inventory.dragItemSlot, transform.position, Quaternion.identity, inventory.dragParent);
+			dragObject = CreateDragItem(transform.position);
 		}
 
 		dragItem = dragObject.GetComponent<Item>();
-		dragItem.SetFromItem(this);
-		dragItem.Count = 1;
-		dragItem.isCreateByDrag = true;
-
-		dragItem.img.raycastTarget = false;
-
-		dragItem.countText.alpha = 0.0f;
-		dragItem.countText.raycastTarget = false;
+		SetDragItem(dragItem, this);
 
 		eventData.selectedObject = dragItem.gameObject;
 	}
@@ -71,7 +64,7 @@ public class Item : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 	}
 
 	public void OnEndDrag(PointerEventData eventData) {
-		dragItem.img.raycastTarget = true;
+		ActivateRaycast();
 
 		if (!isDragCatch) {
 			inventory.AddItem(dragItem);
@@ -86,11 +79,41 @@ public class Item : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 		dragItem = null;
 	}
 
+	static public GameObject CreateDragItem(Vector3 pos) {
+		return Instantiate(inventory.dragItemSlot, pos, Quaternion.identity, inventory.dragParent);
+	}
+
+	static public void SetDragItem(Item dragItem, Item cloneItem = null) {
+		if(cloneItem != null)
+			dragItem.SetFromItem(cloneItem);
+		dragItem.Count = 1;
+		dragItem.isCreateByDrag = true;
+
+		dragItem.img.raycastTarget = false;
+
+		dragItem.countText.alpha = 0.0f;
+		dragItem.countText.raycastTarget = false;
+	}
+
+	public void SetCountForce(byte val) {
+		count = val;
+		Count = count;
+	}
+
 	public void SetFromItem(Item item) {
 		type = item.type;
 		Count = item.Count;
 
-		img.sprite = item.img.sprite;
+		SetImage(item.img.sprite);
 		img.rectTransform.sizeDelta = item.img.rectTransform.sizeDelta;
+	}
+
+	public void ActivateRaycast() {
+		img.raycastTarget = true;
+		countText.raycastTarget = true;
+	}
+
+	public void SetImage(Sprite sprite) {
+		img.sprite = sprite;
 	}
 }

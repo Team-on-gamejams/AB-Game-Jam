@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ItemType : byte {
+public enum ItemType : ushort {
 	NoneBase = 0,	//---------
 	Sweater,
 	Paints,
@@ -10,22 +10,24 @@ public enum ItemType : byte {
 	Candy,
 	Knife,
 	Garland,
+	Soap,
+	Bible,
 	EndBase,		//---------
 
-	SatanSweater,
+	SatanSweater = 1000,
 	DeamonDoll,
 	Impaler,
 	HeadlessDoll,
 	Noose,
 	SatanBible,
 
-	HumanHand,
+	HumanHand = 2000,
 	Pizza,
 	PentagramPostcard,
 	Sulfur,
 	Bones,
 	Horns,
 
-	Friend,
+	Friend = 3000,
 	Scooter,
 }
