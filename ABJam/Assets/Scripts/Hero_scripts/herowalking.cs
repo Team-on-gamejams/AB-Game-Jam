@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class herowalking : MonoBehaviour
 
 {
     private Rigidbody2D rb2D;
-    float moveH = 0f, moveV = 0f;
     public float speed = 10f;
     private Rigidbody2D rb2d;
     public Animator animator;
@@ -22,15 +22,32 @@ public class herowalking : MonoBehaviour
         
         
     }
+
+    
     void FixedUpdate()
     {
         
         float moveHorizontal = Input.GetAxisRaw("Horizontal");
         
-        
-        float moveVertical = Input.GetAxisRaw("Vertical");
+        animator.SetFloat("Right", moveHorizontal);
+        animator.SetFloat("Left", moveHorizontal);
 
+        if (
+            (moveHorizontal < 0 && transform.localScale.x > 0) ||
+            (moveHorizontal > 0 && transform.localScale.x < 0)
+            )
+        {
+            Vector3 rot = transform.localScale;
+            rot.x = -rot.x;
+            transform.localScale = rot;
+        }
+
+        float moveVertical = Input.GetAxisRaw("Vertical");
         animator.SetFloat("Forward", moveVertical);
+        animator.SetFloat("Backward", moveVertical);
+
+
+
 
 
         Vector2 movement = new Vector2(moveHorizontal, moveVertical);
@@ -38,4 +55,7 @@ public class herowalking : MonoBehaviour
         
         rb2d.AddForce(movement * speed);
     }
+
+   
+
 }
