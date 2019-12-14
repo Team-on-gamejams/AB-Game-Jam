@@ -65,6 +65,13 @@ public class CraftPanel : MonoBehaviour, IDropHandler {
 			crafted = CreateItem(ItemType.Noose);
 		}
 
+		else if (CheckItem(ItemType.Bones, ItemType.Sulfur, ItemType.Horns)) {
+			crafted = CreateItem(ItemType.Scooter);
+		}
+		else if (CheckItem(ItemType.Pizza, ItemType.HumanHand, ItemType.PentagramPostcard)) {
+			crafted = CreateItem(ItemType.Friend);
+		}
+
 		if (crafted != null) {
 			foreach (var item in items) 
 				Destroy(item.gameObject);
