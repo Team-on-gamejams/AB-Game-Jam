@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class GiftHandler : MonoBehaviour, IDropHandler {
+
 	[SerializeField] DemonDialogUI demonDialog;
 
 	public void OnDrop(PointerEventData eventData) {
@@ -13,11 +14,10 @@ public class GiftHandler : MonoBehaviour, IDropHandler {
 
 		if (demonDialog.demon.neededItem == item.type) {
 			Item.isDragCatch = true;
+			demonDialog.CorrectGift(item, demonDialog.demon.givedItem);
 		}
 		else {
-
+			demonDialog.WrongGift();
 		}
-
-
 	}
 }
