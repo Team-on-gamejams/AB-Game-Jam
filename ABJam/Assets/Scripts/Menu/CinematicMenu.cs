@@ -24,4 +24,8 @@ public class CinematicMenu : MenuBase {
 	public void ToGameMenu() {
 		MenuManager.TransitTo(MenuManager.GetNeededMenu<MenuGame>());
 	}
+
+	protected override void OnEnter() {
+		ToGameMenu();
+	}
 }
