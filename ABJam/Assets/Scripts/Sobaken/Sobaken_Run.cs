@@ -2,27 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sobaken_Run : MonoBehaviour
-{
-    public float speed = 0.5f;
-    public Animator animator;
-    public GameObject objectGetting;
-    Rigidbody2D rb2d;
-    Vector3 movement;
-    
-    void Start()
-    {
-            
-    }
+public class Sobaken_Run : MonoBehaviour {
+	public float speed = 0.5f;
+	public GameObject objectGetting;
 
-    
-    void Update()
-    {
-        movement = objectGetting.transform.position;
-    }
+	Vector3 dir;
 
-    private void FixedUpdate()
-    {
-        rb2d.MovePosition(transform.position + movement);
-    }
+	void Awake() {
+		dir = (objectGetting.transform.position - transform.position).normalized * speed;
+	}
+
+	void Update() {
+		if ((objectGetting.transform.position - transform.position).sqrMagnitude <= 45.1584)
+			enabled = false;
+
+		transform.Translate(dir);
+	}
 }
