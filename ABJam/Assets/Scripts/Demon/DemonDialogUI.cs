@@ -48,7 +48,8 @@ public class DemonDialogUI : MonoBehaviour {
 			canvasGroup.alpha = a;
 		})
 		.setOnComplete(()=> { 
-			demon.walking.isMoving = true;
+			if(demon.walking)
+				demon.walking.isMoving = true;
 		});
 	}
 
