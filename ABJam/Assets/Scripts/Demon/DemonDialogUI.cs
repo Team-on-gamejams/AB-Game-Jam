@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,6 +7,8 @@ using TMPro;
 
 public class DemonDialogUI : MonoBehaviour {
 	public DemonDialog demon;
+
+	public Action<GameObject> OnCorrectGift;
 
 	[SerializeField] CraftPanel craftPanel;
 	[SerializeField] Inventory inventory;
@@ -70,7 +73,11 @@ public class DemonDialogUI : MonoBehaviour {
 		demon.isGifted = true;
 		demon.OnGifted?.Invoke();
 
-		LeanTween.delayedCall(1.0f, ()=> CloseDialog());
+		LeanTween.delayedCall(1.0f, ()=> {
+			CloseDialog();
+			OnCorrectGift?.Invoke(demon.gameObject);
+			}
+		);
 	}
 
 	public void WrongGift() {

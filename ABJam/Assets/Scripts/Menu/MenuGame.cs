@@ -29,4 +29,8 @@ public class MenuGame : MenuBase {
 		base.OnExit();
 		androidControlls.alpha = 0.0f;
 	}
+
+	public void OnWin() {
+		MenuManager.TransitTo(MenuManager.GetNeededMenu<MenuWin>());
+	}
 }

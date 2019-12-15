@@ -9,7 +9,8 @@ public class ButtonPlayAnims : MonoBehaviour, IPointerEnterHandler, IPointerExit
 	[SerializeField] float speed = 1.0f;
 
 	public void OnPointerClick(PointerEventData eventData) {
-		mainMenuAnim.enabled = true;
+		if(mainMenuAnim != null)
+			mainMenuAnim.enabled = true;
 	}
 
 	public void OnPointerEnter(PointerEventData eventData) {

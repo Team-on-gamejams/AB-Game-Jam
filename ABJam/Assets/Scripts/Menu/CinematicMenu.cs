@@ -30,6 +30,6 @@ public class CinematicMenu : MenuBase {
 	}
 
 	protected override void OnEnter() {
-		ToGameMenu();
+
 	}
 }
