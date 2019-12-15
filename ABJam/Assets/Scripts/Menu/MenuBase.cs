@@ -14,6 +14,7 @@ public abstract class MenuBase : MonoBehaviour {
 	}
 
 	public virtual void Show() {
+		gameObject.SetActive(true);
 		canvasGroup.interactable = canvasGroup.blocksRaycasts = true;
 		canvasGroup.alpha = 1.0f;
 		OnEnter();
@@ -23,6 +24,7 @@ public abstract class MenuBase : MonoBehaviour {
 		canvasGroup.interactable = canvasGroup.blocksRaycasts = false;
 		canvasGroup.alpha = 0.0f;
 		OnExit();
+		gameObject.SetActive(false);
 	}
 
 	protected virtual void OnEnter() { }

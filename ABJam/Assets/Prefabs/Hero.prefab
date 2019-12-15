@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 8616737323232809940}
   m_Layer: 0
   m_Name: Hero
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -129,6 +129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.5
   animator: {fileID: 8616737323232809941}
+  demonDialogUI: {fileID: 0}
 --- !u!50 &8616737323232809942
 Rigidbody2D:
   serializedVersion: 4
@@ -182,7 +183,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.011358261, y: 3.5432034}
+  m_Offset: {x: -0.011358261, y: 1.2920313}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -193,5 +194,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.04175, y: 6.632038}
+  m_Size: {x: 3.4199204, y: 2.129694}
   m_EdgeRadius: 0

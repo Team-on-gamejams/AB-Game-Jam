@@ -31,6 +31,8 @@ public class DemonDialogUI : MonoBehaviour {
 
 		image.sprite = demon.sprite;
 		dialogText.text = demon.dialogText;
+		if(demon.walking != null)
+			demon.walking.isMoving = false;
 	}
 
 	public void CloseDialog() {
@@ -39,6 +41,9 @@ public class DemonDialogUI : MonoBehaviour {
 		LeanTween.value(gameObject, canvasGroup.alpha, 0.0f, 0.2f)
 		.setOnUpdate((float a) => {
 			canvasGroup.alpha = a;
+		})
+		.setOnComplete(()=> { 
+			demon.walking.isMoving = true;
 		});
 	}
 
@@ -57,6 +62,7 @@ public class DemonDialogUI : MonoBehaviour {
 
 		dialogText.text = "Дяяяяяя.";
 		demon.isGifted = true;
+		demon.OnGifted?.Invoke();
 
 		LeanTween.delayedCall(1.0f, ()=> CloseDialog());
 	}

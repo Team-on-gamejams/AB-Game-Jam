@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DemonWalking : MonoBehaviour
 {
+    public bool isMoving;
     public float speed = 100f;
     public Animator animator;
     public Vector2 direction;
@@ -15,11 +16,15 @@ public class DemonWalking : MonoBehaviour
     void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        isMoving = true;
     }
 
     void Update()
     {
-		movement = direction * speed;
+        if (isMoving)
+            movement = direction * speed;
+        else
+            movement = Vector3.zero;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -29,6 +34,9 @@ public class DemonWalking : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!isMoving)
+            return;
+
         if (
             (movement.x < 0 && transform.localScale.x > 0 && flip == true ) ||
             (movement.x > 0 && transform.localScale.x < 0 && flip == true)
