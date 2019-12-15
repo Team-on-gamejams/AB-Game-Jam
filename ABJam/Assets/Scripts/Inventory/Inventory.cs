@@ -24,7 +24,7 @@ public class Inventory : MonoBehaviour, IDropHandler {
 
 	public void OnDrop(PointerEventData eventData) {
 		Item.isDragCatch = true;
-		Item dragItem = eventData.selectedObject.GetComponent<Item>();
+		Item dragItem = eventData.selectedObject?.GetComponent<Item>();
 		if (dragItem == null)
 			return;
 

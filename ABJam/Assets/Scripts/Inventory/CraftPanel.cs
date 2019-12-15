@@ -74,7 +74,7 @@ public class CraftPanel : MonoBehaviour, IDropHandler {
 
 		if (crafted != null) {
 			foreach (var item in items) 
-				Destroy(item.gameObject);
+				Destroy(item.gameObject, 0.5f);
 			items.Clear();
 
 			items.Add(crafted);
@@ -119,8 +119,26 @@ public class CraftPanel : MonoBehaviour, IDropHandler {
 	}
 
 	public Item CreateItem(ItemType itemType) {
-		GameObject itemgo = Item.CreateDragItem(items.Count != 0 ? items[0].transform.position : Vector3.zero);
+		Item.isCanDrag = false;
+
+		Vector3 centrePos = Vector2.zero;
+		foreach (var i in items) {
+			centrePos += i.transform.position;
+		}
+		if(items.Count != 0)
+			centrePos /= items.Count;
+
+		GameObject itemgo = Item.CreateDragItem(centrePos);
 		Item item = itemgo.GetComponent<Item>();
+
+		foreach (var i in items) {
+			LeanTween.move(i.gameObject, centrePos, 0.5f)
+			.setOnComplete(()=> { 
+				Item.isCanDrag = true;
+				item.Show();
+			});
+		}
+
 		Item.SetDragItem(item, items.Count != 0 ? items[0] : null);
 
 		item.type = itemType;
@@ -128,6 +146,7 @@ public class CraftPanel : MonoBehaviour, IDropHandler {
 		item.SetImage(images[Array.IndexOf(types, itemType)]);
 		item.SetCountForce(1);
 		item.ActivateRaycast();
+		item.Hide();
 		return item;
 	}
 

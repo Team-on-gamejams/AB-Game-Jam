@@ -9,6 +9,7 @@ using TMPro;
 public class Item : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
 	static public Inventory inventory;
 	static public bool isDragCatch;
+	static public bool isCanDrag = true;
 
 	public byte Count {
 		get => count;
@@ -41,6 +42,9 @@ public class Item : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 	}
 
 	public void OnBeginDrag(PointerEventData eventData) {
+		if (!isCanDrag)
+			return;
+
 		isDragCatch = false;
 		--Count;
 
@@ -60,10 +64,14 @@ public class Item : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 	}
 
 	public void OnDrag(PointerEventData eventData) {
+		if (!isCanDrag || dragItem == null)
+			return; 
 		dragItem.transform.position += (Vector3)eventData.delta;
 	}
 
 	public void OnEndDrag(PointerEventData eventData) {
+		if (!isCanDrag || dragItem == null)
+			return; 
 		dragItem.ActivateRaycast();
 
 		if (!isDragCatch) {
@@ -115,5 +123,17 @@ public class Item : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 
 	public void SetImage(Sprite sprite) {
 		img.sprite = sprite;
+	}
+
+	public void Show() {
+		Color c = img.color;
+		c.a = 1.0f;
+		img.color = c;
+	}
+
+	public void Hide() {
+		Color c = img.color;
+		c.a = 0.0f;
+		img.color = c;
 	}
 }
