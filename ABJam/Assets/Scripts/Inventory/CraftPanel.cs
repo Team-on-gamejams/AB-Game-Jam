@@ -127,6 +127,8 @@ public class CraftPanel : MonoBehaviour, IDropHandler {
 		}
 		if(items.Count != 0)
 			centrePos /= items.Count;
+		else
+			Item.isCanDrag = true;
 
 		GameObject itemgo = Item.CreateDragItem(centrePos);
 		Item item = itemgo.GetComponent<Item>();

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DemonWalking : MonoBehaviour
 {
+    public static bool canDemonsMove;
+
     public bool isMoving;
     public float speed = 100f;
     public Animator animator;
@@ -16,15 +18,19 @@ public class DemonWalking : MonoBehaviour
     void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
-        isMoving = true;
+        canDemonsMove = isMoving = true;
     }
 
     void Update()
     {
-        if (isMoving)
+        if (isMoving && canDemonsMove) {
             movement = direction * speed;
-        else
+            animator.enabled = true;
+        }
+        else {
             movement = Vector3.zero;
+            animator.enabled = false;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -34,7 +40,7 @@ public class DemonWalking : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!isMoving)
+        if (!isMoving || !canDemonsMove)
             return;
 
         if (
