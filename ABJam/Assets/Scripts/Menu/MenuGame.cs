@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MenuGame : MenuBase {
 	[SerializeField] PlayerHp hp;
+	[SerializeField] AudioSource mainTheme;
 
 	protected override void Awake() {
 		base.Awake();
@@ -16,5 +17,9 @@ public class MenuGame : MenuBase {
 
 	void OnLose() {
 		MenuManager.TransitTo(MenuManager.GetNeededMenu<MenuLose>());
+	}
+
+	protected override void OnEnter() {
+		mainTheme.Play();
 	}
 }
