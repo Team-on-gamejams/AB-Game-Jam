@@ -117,7 +117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isGifted: 0
   neededItem: 1000
-  givedItem: 2002
+  givedItem: 2004
   sprite: {fileID: 21300000, guid: 377885e347540a24eb004a49e076e32c, type: 3}
   dialogText: Give me sweater
 --- !u!95 &201126153923125638

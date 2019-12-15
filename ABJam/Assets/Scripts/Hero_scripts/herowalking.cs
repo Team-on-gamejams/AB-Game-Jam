@@ -14,6 +14,9 @@ public class herowalking : MonoBehaviour {
 	public string[] bossNames;
 	public GameObject[] bossGifts;
 
+	public GameObject[] levels;
+	public byte currLevel = 0;
+
 	Rigidbody2D rb2d;
 	Vector3 movement;
 
@@ -78,7 +81,14 @@ public class herowalking : MonoBehaviour {
 				Sobaken_Run run = bossGifts[i].GetComponent<Sobaken_Run>();
 				run.target = boss;
 				run.OnEndMove += () => {
-					menuGame.OnWin();
+					++currLevel;
+					if(currLevel == levels.Length) {
+						menuGame.OnWin();
+					}
+					else {
+						levels[currLevel - 1].SetActive(false);
+						levels[currLevel].SetActive(true);
+					}
 					herowalking.isCanMove = true;
 					run.OnEndMove = null;
 				};
