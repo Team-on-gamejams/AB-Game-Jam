@@ -6,9 +6,13 @@ using UnityEngine;
 public class herowalking : MonoBehaviour {
 	static public bool isCanMove;
 
+	public MenuGame menuGame;
 	public float speed;
 	public Animator animator;
 	public DemonDialogUI demonDialogUI;
+
+	public string[] bossNames;
+	public GameObject[] bossGifts;
 
 	Rigidbody2D rb2d;
 	Vector3 movement;
@@ -16,6 +20,11 @@ public class herowalking : MonoBehaviour {
 	void Awake() {
 		rb2d = GetComponent<Rigidbody2D>();
 		isCanMove = true;
+		demonDialogUI.OnCorrectGift += TryGiveGiftBoss;
+	}
+
+	private void OnDestroy() {
+		demonDialogUI.OnCorrectGift -= TryGiveGiftBoss;
 	}
 
 	void Update() {
@@ -59,5 +68,22 @@ public class herowalking : MonoBehaviour {
 				demonDialogUI.ShowDialog();
 			}
 		}	
+	}
+
+	public void TryGiveGiftBoss(GameObject boss) {
+		for(byte i = 0; i < bossNames.Length; ++i) {
+			if(bossNames[i] == boss.name) {
+				herowalking.isCanMove = false;
+				bossGifts[i].SetActive(true);
+				Sobaken_Run run = bossGifts[i].GetComponent<Sobaken_Run>();
+				run.target = boss;
+				run.OnEndMove += () => {
+					menuGame.OnWin();
+					herowalking.isCanMove = true;
+					run.OnEndMove = null;
+				};
+				break;
+			}
+		}
 	}
 }
