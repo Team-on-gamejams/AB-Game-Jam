@@ -135,7 +135,8 @@ public class CraftPanel : MonoBehaviour, IDropHandler {
 			LeanTween.move(i.gameObject, centrePos, 0.5f)
 			.setOnComplete(()=> { 
 				Item.isCanDrag = true;
-				item.Show();
+				if(item != null)
+					item.Show();
 			});
 		}
 
@@ -152,7 +153,7 @@ public class CraftPanel : MonoBehaviour, IDropHandler {
 
 	public void OnDrop(PointerEventData eventData) {
 		Item.isDragCatch = true;
-		if(!items.Contains(eventData.selectedObject.GetComponent<Item>()))
+		if(eventData.selectedObject != null && !items.Contains(eventData.selectedObject.GetComponent<Item>()))
 			items.Add(eventData.selectedObject.GetComponent<Item>());
 	}
 }

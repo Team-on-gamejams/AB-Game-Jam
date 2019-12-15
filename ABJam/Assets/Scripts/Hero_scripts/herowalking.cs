@@ -20,7 +20,11 @@ public class herowalking : MonoBehaviour {
 
 	void Update() {
 		if (isCanMove) {
+#if UNITY_ANDROID || UNITY_IOS
+			movement = new Vector3(UnityStandardAssets.CrossPlatformInput.CrossPlatformInputManager.GetAxisRaw("Horizontal"), UnityStandardAssets.CrossPlatformInput.CrossPlatformInputManager.GetAxisRaw("Vertical"));
+#else
 			movement = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+#endif
 			movement = movement.normalized * speed;
 		}
 		else {

@@ -20,6 +20,8 @@ public class MenuManager : MonoBehaviour {
 
 			menu.MenuManager = this;
 		}
+
+		Application.targetFrameRate = 60;
 	}
 
 	public void HideAll() {
