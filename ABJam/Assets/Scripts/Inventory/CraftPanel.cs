@@ -84,8 +84,8 @@ public class CraftPanel : MonoBehaviour, IDropHandler {
 	}
 
 	public bool CheckItem(ItemType i1, ItemType i2) {
-		for(int i = 0; i < items.Count; ++i) {
-			if(items[i] == null) {
+		for (int i = 0; i < items.Count; ++i) {
+			if (items[i] == null) {
 				items.RemoveAt(i);
 				--i;
 			}
@@ -104,6 +104,12 @@ public class CraftPanel : MonoBehaviour, IDropHandler {
 	}
 
 	public bool CheckItem(ItemType i1, ItemType i2, ItemType i3) {
+		for (int i = 0; i < items.Count; ++i) {
+			if (items[i] == null) {
+				items.RemoveAt(i);
+				--i;
+			}
+		}
 		if (items.Count != 3)
 			return false;
 
@@ -119,6 +125,12 @@ public class CraftPanel : MonoBehaviour, IDropHandler {
 	}
 
 	public Item CreateItem(ItemType itemType) {
+		for (int i = 0; i < items.Count; ++i) {
+			if (items[i] == null) {
+				items.RemoveAt(i);
+				--i;
+			}
+		}
 		Item.isCanDrag = true;
 
 		Vector3 centrePos = Vector2.zero;
