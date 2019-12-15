@@ -13,6 +13,16 @@ public class MenuLose : MenuBase {
 		StartCoroutine(FadeOut(mainTheme, 1.0f));
 	}
 
+	public override void Show() {
+		gameObject.SetActive(true);
+		canvasGroup.interactable = canvasGroup.blocksRaycasts = true;
+		LeanTween.value(gameObject, canvasGroup.alpha, 1.0f, 0.2f)
+		.setOnUpdate((float a) => {
+			canvasGroup.alpha = a;
+		});
+		OnEnter();
+	}
+
 	public static IEnumerator FadeOut(AudioSource audioSource, float FadeTime) {
 		float startVolume = audioSource.volume;
 

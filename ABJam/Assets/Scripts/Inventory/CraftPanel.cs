@@ -119,7 +119,7 @@ public class CraftPanel : MonoBehaviour, IDropHandler {
 	}
 
 	public Item CreateItem(ItemType itemType) {
-		Item.isCanDrag = false;
+		Item.isCanDrag = true;
 
 		Vector3 centrePos = Vector2.zero;
 		foreach (var i in items) {
