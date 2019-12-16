@@ -1,7 +1,8 @@
 # [AB Game Jam](https://jam.ab-games.com/)
 Theme: "In pursuit of the idea"  
-**Santa Idea**  
+**Santa Idea** - best game award  
 Santa in hell. And he giving gifts to demons  
+Santa Idea is a adventure quest where you play as a Santa, who give gifts to demons. You need to craft special gift for each demon.
 
 ![Cover](Screenshots/Cover.jpg)
 
@@ -13,7 +14,7 @@ Available in [Windows, OSX, Linux, Web, Android and IOS](https://teamon.itch.io/
  * Drag & drop item on demon to give gift
 
 # AB Game Jam?
-//TODO:
+AB Game Jam it's annual game jam hosted by [AB Games](https://ab-games.com/) in Rivne, Ukraine. Is an event where you create a game from scratch in a weekend based on a theme.
 
 # Tools:
  * Unity 2019.2.5f1
