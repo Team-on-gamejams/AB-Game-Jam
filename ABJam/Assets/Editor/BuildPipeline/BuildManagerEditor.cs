@@ -55,4 +55,14 @@ public static class BuildManagerEditor {
 	public static void BuildWeb() {
 		BuildManager.BuildWeb(false);
 	}
+
+	[MenuItem("Build/Build Android")]
+	public static void BuildAndroid() {
+		BuildManager.BuildAndroid(false);
+	}
+
+	[MenuItem("Build/Build Ios")]
+	public static void BuildIos() {
+		BuildManager.BuildIos(false);
+	}
 }

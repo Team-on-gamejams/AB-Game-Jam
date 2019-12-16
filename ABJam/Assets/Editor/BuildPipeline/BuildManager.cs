@@ -22,6 +22,9 @@ public static class BuildManager {
 		"linux-universal",
 		"osx-universal",
 		"webgl",
+		"android",
+		"ios",
+		"uwp",
 	};
 
 
@@ -160,6 +163,28 @@ public static class BuildManager {
 			!isInBuildSequence,
 			"_Web",
 			$"_Web"
+		);
+	}
+
+	public static string BuildAndroid(bool isInBuildSequence) {
+		return BaseBuild(
+			BuildTargetGroup.Android, BuildTarget.Android,
+			isInBuildSequence ? BuildOptions.None : BuildOptions.ShowBuiltPlayer,
+			!isInBuildSequence,
+			!isInBuildSequence,
+			"",
+			$"{PlayerSettings.productName}_{PlayerSettings.bundleVersion}.{LastBuildPatch}.apk"
+		);
+	}
+
+	public static string BuildIos(bool isInBuildSequence) {
+		return BaseBuild(
+			BuildTargetGroup.iOS, BuildTarget.iOS,
+			isInBuildSequence ? BuildOptions.None : BuildOptions.ShowBuiltPlayer,
+			!isInBuildSequence,
+			!isInBuildSequence,
+			"",
+			$"{PlayerSettings.productName}_{PlayerSettings.bundleVersion}.{LastBuildPatch}.ipa"
 		);
 	}
 
