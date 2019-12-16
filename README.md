@@ -3,7 +3,7 @@ Theme: "In pursuit of the idea"
 **Santa Idea**  
 Santa in hell. And he giving gifts to demons  
 
-![Cover](Screenshots/cover.png)
+![Cover](Screenshots/Cover.jpg)
 
 # Downloads and Links
 Available in [Windows, OSX, Linux, Web, Android and IOS](https://teamon.itch.io/santaidea). If you encounter any problem, please leave a issue! 
@@ -28,3 +28,9 @@ Available in [Windows, OSX, Linux, Web, Android and IOS](https://teamon.itch.io/
  
 # Thanks for assets
  * [JustMEr0](https://opengameart.org/content/metal-christmas-hellish-sleighs) - in game music
+
+# Screenshots
+![Cover](Screenshots/1.jpg)  
+![Cover](Screenshots/2.jpg)  
+![Cover](Screenshots/3.jpg)  
+![Cover](Screenshots/5.jpg)
