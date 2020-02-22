@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class MenuGame : MenuBase {
 	[SerializeField] PlayerHp hp;
-	[SerializeField] AudioSource mainTheme;
 	[SerializeField] CanvasGroup androidControlls;
 
 	protected override void Awake() {
@@ -21,7 +20,6 @@ public class MenuGame : MenuBase {
 	}
 
 	protected override void OnEnter() {
-		mainTheme.Play();
 		androidControlls.alpha = 1.0f;
 	}
 
