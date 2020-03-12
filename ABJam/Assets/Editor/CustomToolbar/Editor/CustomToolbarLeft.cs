@@ -27,7 +27,12 @@ namespace UnityToolbarExtender {
 		static void OnToolbarGUI() {
 			GUILayout.FlexibleSpace();
 
-			if (GUILayout.Button(EditorGUIUtility.IconContent("LookDevSingle1@2x"), ToolbarStyles.commandButtonStyle)) {
+			if (GUILayout.Button(EditorGUIUtility.IconContent("SaveFromPlay"), ToolbarStyles.commandButtonStyle)) {
+				Debug.Log("Clear player prefs");
+				PlayerPrefs.DeleteAll();
+			}
+
+			if (GUILayout.Button(new GUIContent((Texture2D)AssetDatabase.LoadAssetAtPath("Assets/Editor/CustomToolbar/Editor/Icons/LookDevSingle1@2x.png", typeof(Texture2D))), ToolbarStyles.commandButtonStyle)) {
 				if (!EditorApplication.isPlaying) {
 					EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo();
 					EditorPrefs.SetInt("LastActiveScene", EditorSceneManager.GetActiveScene().buildIndex);
@@ -39,11 +44,11 @@ namespace UnityToolbarExtender {
 		}
 
 		private static void LogPlayModeState(PlayModeStateChange state) {
-			if (state == PlayModeStateChange.EnteredEditMode && EditorPrefs.HasKey("LastActiveScene")) {
-				EditorSceneManager.OpenScene(
-					SceneUtility.GetScenePathByBuildIndex(EditorPrefs.GetInt("LastActiveScene")));
-				EditorPrefs.DeleteKey("LastActiveScene");
-			}
+			//if (state == PlayModeStateChange.EnteredEditMode && EditorPrefs.HasKey("LastActiveScene")) {
+			//	EditorSceneManager.OpenScene(
+			//		SceneUtility.GetScenePathByBuildIndex(EditorPrefs.GetInt("LastActiveScene")));
+			//	EditorPrefs.DeleteKey("LastActiveScene");
+			//}
 		}
 	}
 }
