@@ -5,12 +5,12 @@ using TMPro;
 
 public class DialogPlayer : MonoBehaviour {
 	string[] dialogs = new string[] {
-		"Санта! Я ЗАДОВБАВСЯ вигадувати подарунки для всього пекВа!",
-		"Ти вигадав свято, а подаВунків нам не приносиш.",
-		"І кожного року я бігаю в пошуках ідей для кожного ДОВБАНОГО біса!",
-		"До БІСА кожного бігаю!!!!!",
-		"Тепер твоя черга, ти був поганим цього року і потВапвяєш до...",
-		"ПEKBA!!!!!",
+		"SANTA! I'm tired of offering gifts for everyone in the Hell!",
+		"You invented a holiday, but you never bring us gifts.",
+		"And every year I run in search of ideas for gifts to every demon.",
+		"Even for Horsemen of the Apocalypse!!!!!",
+		"You was bad boi during this year, so you're going straight to...",
+		"HELL!!!!!",
 	};
 	byte i = 0;
 

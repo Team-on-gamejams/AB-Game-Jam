@@ -69,7 +69,7 @@ public class DemonDialogUI : MonoBehaviour {
 		Destroy(item.gameObject);
 		Destroy(createdItem.gameObject);
 
-		dialogText.text = "Дяяяяяя.";
+		dialogText.text = "Thank you, Santa!";
 		demon.isGifted = true;
 		demon.OnGifted?.Invoke();
 
@@ -81,7 +81,7 @@ public class DemonDialogUI : MonoBehaviour {
 	}
 
 	public void WrongGift() {
-		dialogText.text = "Ніт \n" + demon.dialogText;
+		dialogText.text = "No, I don't want this. \n" + demon.dialogText;
 		--hp.CurrHp;
 	}
 }

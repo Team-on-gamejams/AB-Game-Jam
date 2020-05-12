@@ -49,6 +49,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -100,7 +101,7 @@ MonoBehaviour:
   neededItem: 3000
   givedItem: 1
   sprite: {fileID: 21300000, guid: d92d0b73e60170942aff06848796223e, type: 3}
-  dialogText: I want friend pls
+  dialogText: I just want to have a friend
 --- !u!95 &8754543159943995282
 Animator:
   serializedVersion: 3

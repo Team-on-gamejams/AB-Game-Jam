@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class MenuGame : MenuBase {
 	[SerializeField] PlayerHp hp;
-	[SerializeField] CanvasGroup androidControlls;
 
 	protected override void Awake() {
 		base.Awake();
@@ -20,12 +19,11 @@ public class MenuGame : MenuBase {
 	}
 
 	protected override void OnEnter() {
-		androidControlls.alpha = 1.0f;
+
 	}
 
 	protected override void OnExit() {
 		base.OnExit();
-		androidControlls.alpha = 0.0f;
 	}
 
 	public void OnWin() {
