@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MenuGame : MenuBase {
 	[SerializeField] PlayerHp hp;
+	[SerializeField] GameObject tutorial;
 
 	protected override void Awake() {
 		base.Awake();
@@ -28,5 +29,9 @@ public class MenuGame : MenuBase {
 
 	public void OnWin() {
 		MenuManager.TransitTo(MenuManager.GetNeededMenu<MenuWin>());
+	}
+
+	public void OnTutorialButtonPress() {
+		tutorial.SetActive(!tutorial.activeSelf);
 	}
 }
